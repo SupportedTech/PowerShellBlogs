@@ -1,4 +1,4 @@
-﻿# By Andrew Wilson
+# By Andrew Wilson
 # 18/02/2019
 #
 #.Description
@@ -18,6 +18,8 @@
 #
 # -SortBySize provide $true to sort by size
 #
+# -Bypass skips the sorting of information and displays it raw. This way the function can be incorperated into a script
+#
 #.Improvements
 # Swap out the $Size conversion for a more efficient function
 #
@@ -29,7 +31,8 @@ Function Get-Files
     # Parameters:
     Param(
     [String]$Location,
-    [String]$SortBySize
+    [String]$SortBySize,
+    [String]$Bypass
     )
 
     # Empty Parameter action
@@ -178,8 +181,11 @@ Function Get-Files
     
     # Display the collected information
     If ($SortBySize -eq $True)
-        {$Array | Sort-Object HiddenSize | Select Name,Size,Type,Lastwritetime | Format-Table}
+       {$Array | Sort-Object HiddenSize | Select Name,Size,Type,Lastwritetime | Format-Table}
+    ElseIf ($Bypass -eq $True)
+        {$Array}
     Else {$Array | Select Name,Size,Type,Lastwritetime | Format-Table}
-    $Location = $null
+    $Location = $Null
     $SortBySize = $Null
+    $Bypass = $Null
     }
