@@ -43,7 +43,7 @@ Function Get-Files
     $Array = @()
 
     # Get the files and folders for the chosen location
-    $Files = Get-ChildItem -Path $Location
+    $Files = Get-ChildItem -Path $Location -force
 
     # Seperate the files and folders so we can look at each result
     Foreach ($File in $Files)
