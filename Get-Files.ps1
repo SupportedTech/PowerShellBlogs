@@ -16,7 +16,7 @@
 # -Location provide the full path to scan. If not provided the script will take the
 # current location the PS environment is running in.
 #
-# -SortBySize provide $true to sort by size
+# -SortBySize provide "Ascending" or "Descending" to sort by size
 #
 # -Bypass skips the sorting of information and displays it raw. This way the function can be incorperated into a script
 #
@@ -180,8 +180,10 @@ Function Get-Files
     # Empty location veriable before we exit, prevents issues with validation on re-use
     
     # Display the collected information
-    If ($SortBySize -eq $True)
-       {$Array | Sort-Object HiddenSize | Select Name,Size,Type,Lastwritetime | Format-Table}
+    If ($SortBySize -eq "Ascending")
+        {$Array | Sort-Object HiddenSize | Select Name,Size,Type,Lastwritetime | Format-Table}
+    ElseIf ($SortBySize -eq "Descending")
+        {$Array | Sort-Object HiddenSize -Descending | Select Name,Size,Type,Lastwritetime | Format-Table}
     ElseIf ($Bypass -eq $True)
         {$Array}
     Else {$Array | Select Name,Size,Type,Lastwritetime | Format-Table}
