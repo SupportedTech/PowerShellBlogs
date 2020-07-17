@@ -19,6 +19,7 @@
 # -SortBySize provide "Ascending" or "Descending" to sort by size
 #
 # -Bypass skips the sorting of information and displays it raw. This way the function can be incorperated into a script
+# Provide a True parameter to this switch, otherwise no results will be returned.
 #
 #.Improvements
 # Swap out the $Size conversion for a more efficient function
